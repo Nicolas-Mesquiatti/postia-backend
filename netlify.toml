@@ -1,0 +1,7 @@
+[build]
+  functions = "netlify/functions"
+ 
+[[redirects]]
+  from = "/tiktok-callback"
+  to = "/.netlify/functions/tiktok-callback"
+  status = 200
