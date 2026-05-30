@@ -21,6 +21,7 @@ exports.handler = async function(event) {
     const data = await response.json();
 
     if (data.access_token) {
+      // Guardamos los tokens en Supabase
       await fetch(`${process.env.SUPABASE_URL}/rest/v1/tiktok_tokens`, {
         method: 'POST',
         headers: {
@@ -33,6 +34,7 @@ exports.handler = async function(event) {
           access_token: data.access_token,
           refresh_token: data.refresh_token,
           open_id: data.open_id,
+          expires_at: new Date(Date.now() + data.expires_in * 1000).toISOString(), // ← LÍNEA AGREGADA
         }),
       });
 
